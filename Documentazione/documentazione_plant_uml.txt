@@ -1,0 +1,51 @@
+@startuml
+'commenti con apostrofo
+
+package GeometryLibrary <<Folder>>{
+
+'per cleare una classe: keyword class e nome
+'+ indica che è pubblico, dopo il : metto il tipo
+
+class Triangle
+{
++ Vertices: Matrix3d
++ Triangle(Vertices) 
+'costruttore
++ double computeArea() 
+'metodo (non serve nulla in input perché ha già tutte le informazioni)
+}
+
+class Polygons
+{
++ Vertices: MatrixXd
++ listPolygons: vector<vector<unsigned int>>
++ v<v<v<unsigned int>>> computeTriangulation()
+'metodo che restituisce il triplo vettore
++ vector<double> computeArea()
++ void gedimInterface(v<v<unsigned int>>&)
+'per mettere i dati nella forma che serve per passarli a paraview
+' & per dire che è un output
+
+'separatore
+..Non member function ..
+void importPolygons(path, polygons)
+..TEST POLYGONS..
+TESTCOMPUTEAREA
+TESTTRIANGULATION
+}
+}
+
+package Gedim <<Frame>>{
+}
+note "Gedim is an external library" as GedimN
+GedimN..Gedim
+'con i puntini collego (linea tratteggiata)
+
+Gedim ..> Polygons::gedimInterface 
+'così so dove lo uso
+
+'dico che tra le due classi c'è una relazione di aggregazione (1 a molti)
+Triangle "many"--o "1 " Polygons : is made up
+'posso aggiungervi una nota
+
+@enduml
